@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Convert to Sign Language and Voice</title>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-46XR34W1WP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-46XR34W1WP');
+  </script>
+</head>
+<body>
+<div class="container">
+  <h1 tabindex="0">Convert to Sign Language and Voice</h1>
+  <input id="videoUrl" type="text" placeholder="Enter YouTube video URL" /><br>
+  <button id="transcribeButton" class="button-style">Transcribe Video</button><br>
+  <textarea id="inputText" placeholder="Paste or type the text here"></textarea><br>
+  <button id="readButton" class="button-style">Read out loud</button>
+  <button id="stopButton" class="button-style" onclick="stopReading()">Stop Reading</button>
+  <div tabindex="0" id="outputSign"></div>
+  <button id="clearButton" class="button-style" onclick="clearText()">Clear</button>
+</div>
+
+<script>
+  function removeAccents(text) {
+    return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function convertToSignLanguage() {
+    const inputText = document.getElementById("inputText").value;
+    const outputSign = document.getElementById("outputSign");
+    const textWithoutAccents = removeAccents(inputText);
+
+    outputSign.textContent = textWithoutAccents;
+  }
+
+  function clearText() {
+    document.getElementById("inputText").value = "";
+    document.getElementById("outputSign").textContent = "";
+  }
+
+  document.getElementById("inputText").addEventListener("input", convertToSignLanguage);
+
+  if ('speechSynthesis' in window) {
+    var synthesis = window.speechSynthesis;
+    var readButton = document.getElementById('readButton');
+    var inputText = document.getElementById('inputText');
+
+    readButton.addEventListener('click', function() {
+      var message = new SpeechSynthesisUtterance(inputText.value);
+      synthesis.speak(message);
+    });
+  } else {
+    alert("Your browser does not support speech synthesis.");
+  }
+
+  var synthesis = window.speechSynthesis;
+
+  function stopReading() {
+    if (synthesis.speaking) {
+      synthesis.cancel();
+    }
+  }
+
+  // New functionality for transcribing YouTube video
+  document.getElementById('transcribeButton').addEventListener('click', function() {
+    const videoUrl = document.getElementById('videoUrl').value;
+    fetch('/transcribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ videoUrl: videoUrl })
+    })
+    .then(response => response.json())
+    .then(data => {
+      document.getElementById('inputText').value = data.text;
+      convertToSignLanguage();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+  });
+</script>
+
+</body>
+</html>
