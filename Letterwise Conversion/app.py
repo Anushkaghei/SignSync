@@ -7,7 +7,7 @@ app = Flask(__name__, static_url_path='', static_folder='.')
 
 # Whisper API endpoint and API key
 WHISPER_API_URL = "https://api.openai.com/v1/audio/transcriptions"
-WHISPER_API_KEY = "sk-proj-ZfEa5LSeyWrl5T35lZ8hT3BlbkFJ6xi69j2NyznGJ6lN7RXM" 
+WHISPER_API_KEY = "" 
 
 
 @app.route('/')
