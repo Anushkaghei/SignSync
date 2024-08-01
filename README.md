@@ -77,7 +77,7 @@ To get started with SignSync, follow these steps:
 
 ## Contributing
 
-Contributions are welcome! Please follow these steps to contribute:
+To contribute: 
 
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature-branch`).
