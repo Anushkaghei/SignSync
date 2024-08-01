@@ -41,7 +41,7 @@ To get started with SignSync, follow these steps:
       ```
     - For JavaScript dependencies (if any):
       ```bash
-      npm install
+      python app.py
       ```
 
 ## Usage
@@ -55,7 +55,7 @@ To get started with SignSync, follow these steps:
 2. Run the application:
     ```bash
     
-    python app.py
+   run the application
     ```
 
 
@@ -67,7 +67,8 @@ To get started with SignSync, follow these steps:
     ```bash
     cd "Letterwise Conversion"
     ```
-2. Open `index.html` in your web browser to view the interface.
+2. Run app.py to view in browser. 4.
+    Visit the [Letterwise Conversion on Vercel](https://sign-sync.vercel.app/) to see the live application.
 
 ![Letterwise Conversion Interface](letterwise-conversion-image.png)
 
