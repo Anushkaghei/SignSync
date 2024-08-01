@@ -67,7 +67,10 @@ To get started with SignSync, follow these steps:
     ```bash
     cd "Letterwise Conversion"
     ```
-2. Run app.py to view in browser. 
+2. Open the app in browser
+ ```bash
+  python run app.py
+  ``` 
 3. Visit the [Letterwise Conversion on Vercel](https://sign-sync.vercel.app/) to see the live application.
 
 ![Letterwise Conversion Interface](letterwise-conversion-image.png)
