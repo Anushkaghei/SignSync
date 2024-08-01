@@ -33,30 +33,67 @@ To get started with SignSync, follow these steps:
       ```bash
       cd "Letterwise Conversion"
       ```
-
-3. **Install dependencies**:
-    - For Python dependencies:
-      ```bash
-      pip install -r requirements.txt
-      ```
-    - For JavaScript dependencies (if any):
-      ```bash
-      python app.py
-      ```
-
 ## Usage
 
 ### 3D Animation
 
-1. Navigate to the `3D-animation` directory:
-    ```bash
-    cd 3D-animation
-    ```
-2. Run the application:
-    ```bash
-    
-   run the application
-    ```
+Open PowerShell and execute the following commands:
+
+```powershell
+git clone https://github.com/sign-language-processing/spoken-to-signed-translation.git
+cd 3D-animation
+```
+Create a virtual environment to manage dependencies:
+
+```powershell
+python -m venv venv
+.\venv\Scripts\activate
+```
+
+Install the package from the repository:
+
+```powershell
+pip install git+https://github.com/ZurichNLP/spoken-to-signed-translation.git
+```
+
+Download a specific lexicon using the following command:
+
+```powershell
+python -m spoken_to_signed.download_lexicon --name signsuisse --directory ./lexicons
+```
+
+Run a demo to test the translation from text to gloss to pose:
+
+```powershell
+python -m spoken_to_signed.text_to_gloss_to_pose --text "Kleine Kinder essen Pizza." --glosser simple --lexicon assets/dummy_lexicon --spoken-language de --signed-language sgg --pose quick_test.pose
+```
+
+### Detailed Commands for Each Script
+
+Translate text to gloss:
+
+```powershell
+python -m spoken_to_signed.text_to_gloss --text "Kleine Kinder essen Pizza." --glosser simple --spoken-language de --signed-language sgg
+```
+
+Convert pose data to video format:
+
+```powershell
+python -m spoken_to_signed.pose_to_video --pose quick_test.pose --video quick_test.mp4
+```
+
+Translate text to gloss and then to pose:
+
+```powershell
+python -m spoken_to_signed.text_to_gloss_to_pose --text "Kleine Kinder essen Pizza." --glosser simple --lexicon assets/dummy_lexicon --spoken-language de --signed-language sgg --pose quick_test.pose
+```
+
+Translate text to gloss, convert to pose, and then to video:
+
+```powershell
+python -m spoken_to_signed.text_to_gloss_to_pose_to_video --text "Kleine Kinder essen Pizza." --glosser simple --lexicon assets/dummy_lexicon --spoken-language de --signed-language sgg --pose quick_test.pose --video quick_test.mp4
+```
+
 
 
 ![3D Animation Interface](3d-animation-image.png)
