@@ -39,10 +39,6 @@ To get started with SignSync, follow these steps:
 
 Open PowerShell and execute the following commands:
 
-```powershell
-git clone https://github.com/sign-language-processing/spoken-to-signed-translation.git
-cd 3D-animation
-```
 Create a virtual environment to manage dependencies:
 
 ```powershell
